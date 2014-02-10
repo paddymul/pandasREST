@@ -128,6 +128,8 @@ if __name__ == '__main__':
     parser.add_argument("-f", "--hf5file", dest="hf5_filename")
     parser.add_argument("-k", "--hf5_key", dest="hf5_key")
     parser.add_argument("-p", "--port", dest="port", default=5000, type=int)
+    parser.add_argument("-o", "--host", dest="host", default='0.0.0.0')
+
     args = parser.parse_args()
     if args.hf5_filename:
         df = pd.read_hdf(args.hf5_filename, args.hf5_key)
@@ -141,6 +143,6 @@ if __name__ == '__main__':
         ])
         df = pd.DataFrame({'a':np.arange(10000), 'b':np.random.random(10000)*5000})
 
-    app.run(port=args.port)
+    app.run(host=args.host, port=args.port)
 
 
